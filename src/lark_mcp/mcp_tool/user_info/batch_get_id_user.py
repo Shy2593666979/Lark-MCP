@@ -13,18 +13,11 @@ def get_id_user_request(user_id_type: str = Field(default="open_id", description
                         app_id: Optional[str] = Field(None, description="应用唯一标识"),
                         app_secret: Optional[str] = Field(None, description="应用密钥")):
     """能够根据用户的邮箱或者手机号查找用户的信息"""
-    # # Test 创建client
     client = lark.Client.builder() \
-        .app_id("cli_a8e97890b87d900b") \
-        .app_secret("Li5w1A3yxy2GCfaaEYGlBhEDI5xr2cBT") \
+        .app_id(app_id) \
+        .app_secret(app_secret) \
         .log_level(lark.LogLevel.DEBUG) \
         .build()
-
-    # client = lark.Client.builder() \
-    #     .app_id(app_id) \
-    #     .app_secret(app_secret) \
-    #     .log_level(lark.LogLevel.DEBUG) \
-    #     .build()
 
     # 构造请求对象
     request: BatchGetIdUserRequest = BatchGetIdUserRequest.builder() \
