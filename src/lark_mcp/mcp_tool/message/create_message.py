@@ -11,7 +11,7 @@ def create_message(
         msg_type: Literal[
             "text", "post", "image", "file", "audio", "media", "sticker", "interactive", "share_chat", "share_user", "system"] = Field(
             ..., description="消息类型，可选值：text(文本)、post(富文本)、image(图片)等"),
-        content: str = Field(..., description="消息内容JSON字符串，需根据msg_type设置对应格式，不需要转义，例如：{'text': '你好啊，你是谁？'}"),
+        content: dict = Field(..., description="消息内容JSON字符串，需根据msg_type设置对应格式，不需要转义，例如：{'text': '你好啊，你是谁？'}"),
         receive_id_type: Literal["open_id", "user_id", "union_id", "email", "chat_id"] = Field("open_id",
                                                                                                description="接收者ID类型"),
         app_id: Optional[str] = Field(None, description="应用唯一标识"),
@@ -23,9 +23,8 @@ def create_message(
         .app_secret(app_secret) \
         .log_level(lark.LogLevel.DEBUG) \
         .build()
-    json_obj = json.loads(content)
     # 将JSON对象转换为JSON转义的字符串
-    json_escaped_str = json.dumps(json_obj, ensure_ascii=True)
+    json_escaped_str = json.dumps(content, ensure_ascii=True)
 
     # 构造请求对象
     request: CreateMessageRequest = CreateMessageRequest.builder() \

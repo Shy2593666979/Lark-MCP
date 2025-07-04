@@ -5,11 +5,12 @@ from lark_oapi.api.im.v1 import *
 from pydantic import Field
 from typing import List
 
-def get_chat_data(user_id_type: Optional[str] = Field(default="open_id",
-                                                      description="用户ID类型，可选值：open_id、union_id、user_id。"),
-                  chat_id: str = Field(..., description="群聊的ID"),
-                  app_id: Optional[str] = Field(None, description="应用唯一标识"),
-                  app_secret: Optional[str] = Field(None, description="应用密钥")):
+
+def get_chat_member_info(user_id_type: Optional[str] = Field(default="open_id",
+                                                             description="用户ID类型，可选值：open_id、union_id、user_id。"),
+                         chat_id: str = Field(..., description="群聊的ID"),
+                         app_id: Optional[str] = Field(None, description="应用唯一标识"),
+                         app_secret: Optional[str] = Field(None, description="应用密钥")):
     """获取群聊的群信息"""
     client = lark.Client.builder() \
         .app_id(app_id) \
@@ -35,4 +36,3 @@ def get_chat_data(user_id_type: Optional[str] = Field(default="open_id",
     # 处理业务结果
     lark.logger.info(lark.JSON.marshal(response.data, indent=4))
     return lark.JSON.marshal(response.data, indent=4)
-

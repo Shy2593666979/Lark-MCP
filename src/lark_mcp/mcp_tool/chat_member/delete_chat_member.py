@@ -5,7 +5,7 @@ from pydantic import Field
 from typing import Optional
 
 
-def delete_chat(
+def delete_chat_member(
         chat_id: str = Field(..., description="群聊ID"),
         app_id: Optional[str] = Field(None, description="应用唯一标识"),
         app_secret: Optional[str] = Field(None, description="应用密钥")

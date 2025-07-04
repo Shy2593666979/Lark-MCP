@@ -7,17 +7,17 @@ from pydantic import Field
 from typing import List
 
 
-def create_chats(user_id_type: Optional[str] = Field(default="open_id",
-                                                     description="用户ID类型，可选值：open_id、union_id、user_id。"),
-                 chat_name: str = Field(..., description="群聊名称，不能为空"),
-                 chat_description: str = Field(..., description="群聊的简要描述"),
-                 owner_id: str = Field(..., description="群主的用户ID（open_id格式）"),
-                 user_id_list: List[str] = Field(..., description="创建群聊时拉入的用户ID列表（open_id格式）"),
-                 bot_id_list: List[str] = Field(..., description="群聊中添加的机器人ID列表， 如果没有可设置为[]"),
-                 chat_avatar: str = Field(default="default-avatar_44ae0ca3-e140-494b-956f-78091e348435",
-                                          description="群聊的图标链接"),
-                 app_id: Optional[str] = Field(None, description="应用唯一标识"),
-                 app_secret: Optional[str] = Field(None, description="应用密钥")):
+def create_chat_member(user_id_type: Optional[str] = Field(default="open_id",
+                                                           description="用户ID类型，可选值：open_id、union_id、user_id。"),
+                       chat_name: str = Field(..., description="群聊名称，不能为空"),
+                       chat_description: str = Field(..., description="群聊的简要描述"),
+                       owner_id: str = Field(..., description="群主的用户ID（open_id格式）"),
+                       user_id_list: List[str] = Field(..., description="创建群聊时拉入的用户ID列表（open_id格式）"),
+                       bot_id_list: List[str] = Field(..., description="群聊中添加的机器人ID列表， 如果没有可设置为[]"),
+                       chat_avatar: str = Field(default="default-avatar_44ae0ca3-e140-494b-956f-78091e348435",
+                                                description="群聊的图标链接"),
+                       app_id: Optional[str] = Field(None, description="应用唯一标识"),
+                       app_secret: Optional[str] = Field(None, description="应用密钥")):
     # 创建client
     client = lark.Client.builder() \
         .app_id(app_id) \

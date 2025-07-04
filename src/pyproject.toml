@@ -3,7 +3,7 @@ name = "lark-mcp"
 version = "0.1.0"
 description = ""
 authors = [
-    {name = "Ming guang Tian",email = "2593666979@qq.com"}
+    {name = "harry tian",email = "harry.tian@cloudsky.com"}
 ]
 readme = "README.md"
 requires-python = ">=3.12"

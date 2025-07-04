@@ -5,7 +5,7 @@ from pydantic import Field
 from typing import Optional
 
 
-def list_files(
+def list_folder_files(
         folder_token: str = Field("", description="文件夹token。不填或为空时获取用户云空间根目录清单（不支持分页）"),
         page_size: int = Field(20, description="每页显示的数据项数量。若获取根目录清单，将返回全部数据", ge=1, le=200),
         order_by: str = Field("EditedTime", description="文件排序字段, 只允许EditedTime, CreatedTime"),

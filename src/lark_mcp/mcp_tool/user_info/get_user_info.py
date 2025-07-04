@@ -3,10 +3,10 @@ import json
 import lark_oapi as lark
 from lark_oapi.api.contact.v3 import *
 from pydantic import Field, BaseModel
-from typing import Literal, List, Optional
+from typing import Literal
 
 
-def contact_v3_user_batch(user_ids: List[str] = Field(...,
+def batch_get_user_info(user_ids: List[str] = Field(...,
                                                       description="用户ID列表，ID类型与 user_id_type 参数一致。单次请求最多支持50个用户ID。"),
                           user_id_type: Optional[str] = Field(default="open_id",
                                                               description="用户ID类型，可选值：open_id、union_id、user_id。"),
@@ -16,6 +16,12 @@ def contact_v3_user_batch(user_ids: List[str] = Field(...,
                           app_secret: Optional[str] = Field(None, description="应用密钥")
                           ):
     """根据该工具可以批量获取用户的具体信息"""
+    # 创建client
+    # client = lark.Client.builder() \
+    #     .app_id("cli_a8e97890b87d900b") \
+    #     .app_secret("Li5w1A3yxy2GCfaaEYGlBhEDI5xr2cBT") \
+    #     .log_level(lark.LogLevel.DEBUG) \
+    #     .build()
     client = lark.Client.builder() \
         .app_id(app_id) \
         .app_secret(app_secret) \
